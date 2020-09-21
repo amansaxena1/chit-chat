@@ -1,0 +1,67 @@
+*{
+	font-family: 'Bubblegum Sans', cursive;	
+}
+.logo{
+     display: block;
+     margin: auto;
+     margin-top: 25px;
+     width: 80px;
+     height: 80px;
+}
+body{
+     background-color: #121212;
+}
+.loginBox{
+	margin-top: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 350px;
+	padding: 30px 40px;
+	box-sizing: border-box;
+	background: #090909;
+	border: 5px solid white;
+	border-radius: 10px;
+
+}
+h1{
+	margin-left: 20%;
+	padding: 0 0 20px;
+	color: white;
+	background: transparent;
+	font-size: 50px;
+}
+.loginBox input{
+	width: 100%;
+	margin-bottom: 20px;
+}
+.loginBox input[type="text"],
+.loginBox input[type="password"]{
+	border: none;
+	border-bottom: 1px solid #fff;
+	background: transparent;
+	outline: none;
+	height: 40px;
+	color: #fff;
+	font-size: 16px;
+}
+::placeholder{
+	color: white;
+}
+.a a{
+	position:relative;
+	display:inline-block;
+	padding:10px 15px;
+	color:white;
+	letter-spacing:4px;
+	font-size:15px;
+	overflow:hidden;
+	text-decoration: unset;
+}
+.a a:hover{
+	color:black;
+	background:  white;
+	box-shadow: 0 0 10px  white, 0  0 40px white, 0 0 80px  white;
+	transition-delay: 0.1s;
+}
