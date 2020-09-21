@@ -1,5 +1,5 @@
 *{
-	font-family: 'Bubblegum Sans', cursive;	
+	font-family: 'Bubblegum Sans', cursive;
 }
 .logo{
      display: block;
@@ -17,7 +17,7 @@ body{
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
-	width: 300px;
+	width: 370px;
 	padding: 30px 40px;
 	box-sizing: border-box;
 	background: #090909;
@@ -25,7 +25,7 @@ body{
 	border-radius: 10px;
 }
 h1{
-	margin-left: 20%;
+	text-align: center;
 	padding: 0 0 20px;
 	color: white;
 	background: transparent;
@@ -57,13 +57,13 @@ p{
 	text-align: center;
 }
 .a a{
-	position:relative;
-	display:inline-block;
-	padding:10px 15px;
-	color:white;
-	letter-spacing:2px;
+	position: relative;
+	display: inline-block;
+	padding: 10px 15px;
+	color: white;
+	letter-spacing: 2px;
 	font-size:15px;
-	overflow:hidden;
+	overflow: hidden;
 	text-decoration: none;
 }
 .a a:hover{

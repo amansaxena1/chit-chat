@@ -2,22 +2,22 @@
 	font-family: 'Bubblegum Sans', cursive;	
 }
 .logo{
-     display: block;
-     margin: auto;
-     margin-top: 25px;
-     width: 80px;
-     height: 80px;
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    width: 80px;
+    height: 80px;
 }
 body{
      background-color: #121212;
 }
 .loginBox{
-	margin-top: 20px;
+	margin-top: 40px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
-	width: 300px;
+	width: 350px;
 	padding: 30px 40px;
 	box-sizing: border-box;
 	background: #090909;
