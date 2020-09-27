@@ -28,6 +28,11 @@ ul li{
     font-size: 15px;
     border-radius: 30px;
     margin-bottom: 2px;
+    /*box-shadow: 0 0 8px  #79f2d1, 0  0 0px #79f2d1, 0 0 40px  #79f2d1;*/
+}
+ul li b{
+    letter-spacing: 1px;
+    font-size: 15px;
 }
 .message_box{
     align-items: center;
@@ -36,8 +41,9 @@ ul li{
     background: #131313;
     padding: 20px;
     margin: 20px auto;
-    border-radius: 10px;
-    border: 5px solid white;
+    border-radius: 15px;
+    border: 2px solid rgb(0 221 221);
+    box-shadow: 0 0 8px  rgb(0 221 0), 0  0 30px rgb(0 221 221), 0 0 60px  rgb(0 221 221);
 }
 .name{
     height: 50px;
@@ -46,41 +52,59 @@ ul li{
     text-align: center;
     line-height: 1.9em;
     font-size: 24px;
-    border-radius: 10px;
-    border: 2px solid white;
 }
 .him{
   float: left;
-  background: #8f1383;
+  background: linear-gradient(to right, #0f3443, #2eb37c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: #fff;
-  margin-left:8px;
+  margin-left: 4px;
+  padding-left: 15px;
 }
 .me{
   float: right;
-  background: #ff5722;
+  background: linear-gradient(to right, #000046, #1CB5E0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: #fff;
-  margin-right:8px;
+  margin-right: 4px;
+  padding-left: 15px;
 }
 .him + .me{
   border-bottom-right-radius: 5px;
+}
+.me + .him{
+    border-bottom-left-radius: 5px;
 }
 .me + .me{
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+.him + .him{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
 .me:last-of-type {
   border-bottom-right-radius: 30px;
 }
+.him:last-of-type {
+  border-bottom-left-radius: 30px;
+}
+/*.me: hover,
+.him: hover{
+    color:black;
+    background:  white;
+    box-shadow: 0 0 10px  white, 0  0 40px white, 0 0 80px  white;
+    transition-delay: 0.1s;
+}*/
 .chat-form textarea{
     background: black;
     height: 40px;
     width: 100%;
-    border: 3px solid #fff;
+ /*   border: 3px solid #fff;*/
     border-radius: 8px;
-    margin-top: 2%;
+    margin-top: 3%;
     padding: 7px;
     font-size: 15px;
     color: #ffffff;
+    box-shadow: 0 0 8px  rgb(0 221 0), 0  0 10px rgb(0 221 221), 0 0 20px  rgb(0 221 221);
 }
 /*.chat-form textarea:focus{
     background: #fff;
@@ -106,6 +130,7 @@ ul li{
     overflow: hidden;
     text-decoration: none;
     border-radius: 5px;
+    margin-top: 1%;
 }
 .chat-form .a a:hover{
     color:black;
@@ -128,7 +153,7 @@ ul li{
     overflow-x: hidden;
     overflow-y: scroll;
     border-radius: 10px;
-    border: 3px solid white;
+    box-shadow: 0 0 8px  rgb(0 221 0), 0  0 10px rgb(0 221 221), 0 0 20px  rgb(0 221 221);
 }
 .message_logs::-webkit-scrollbar{
     width: 10px;
@@ -147,15 +172,22 @@ ul li{
     .message_box{
         padding: 20px;
         margin: 20px auto;
-        border: 3px solid white;
+/*        border: 3px solid white;*/
     }
     .name{
         font-size: 20px;
+        margin-bottom: 0px;
     }
     .message_box{
         max-height: 60%;
     }
     .message_logs{
+        height: 300px;
         max-height: 60%;
+    }
+    .logo{
+        margin-top: 15px;
+        width: 50px;
+        height: 50px
     }
 }

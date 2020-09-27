@@ -6,8 +6,10 @@
      <title>Chit-Chat</title>
      <link rel="stylesheet" href="css/signup.css">
      <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+</body>
 </head>
 <body>
+     <main>
      <nav>
           <img class="logo" src="icon.png" alt="">
      </nav>
@@ -16,11 +18,11 @@
                <span>SIGN UP</span>
           </h1>
           <form>
-               <input type="text" placeholder="Name">
-               <input type="text" placeholder="Username">
-               <input type="password" placeholder="Choose Password">
+               <input type="text" id="name" placeholder="Name">
+               <input type="text" id="username" placeholder="Username">
+               <input type="password" id="choosepassword" placeholder="Choose Password">
                <div class="a">
-                    <a href="chat.html">
+                    <a id="sign" href="chat.html">
                          <b>SIGN UP</b>
                     </a>
                     <p>-OR-</p>
@@ -29,6 +31,40 @@
                     </a> 
                </div>
           </form>
-     </div>    
+     </div>
+     </main>
+     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-analytics.js"></script>
+     <script>
+       var firebaseConfig = {
+         apiKey: "AIzaSyDUR1YtiVv5ODcd2P0ZhgNb98pQ1giBVJ0",
+         authDomain: "chit-chat-14af6.firebaseapp.com",
+         databaseURL: "https://chit-chat-14af6.firebaseio.com",
+         projectId: "chit-chat-14af6",
+         storageBucket: "chit-chat-14af6.appspot.com",
+         messagingSenderId: "232361079089",
+         appId: "1:232361079089:web:5be801bc6b78088aed0010",
+         measurementId: "G-WMSZ8J3C68"
+       };
+       firebase.initializeApp(firebaseConfig);
+       firebase.analytics();
+     </script>
+     <script>
+          var name1, username1, password1, sign1;               
+          name1 = document.getElementById('name');
+          username1 = document.getElementById('username');
+          password1 = document.getElementById('choosepassword');
+          sign1 = document.getElementById('sign');
+          const database = firebase.database();
+          const rootref = database.ref('accounts');
+          sign1.addEventListener('click', (e) => {
+               rootref.child(username1.value).set({
+                  name: name1.value,
+                  username: username1.value,
+                  password: password1.value
+              });
+          });
+     </script>
 </body>
 </html>

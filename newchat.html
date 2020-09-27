@@ -16,13 +16,42 @@
                <span>CHIT CHAT</span>
           </h1>
           <form>
-               <input type="text" placeholder="Choose Chat Name">
+               <input  id="chatname" type="text" placeholder="Choose Chat Name">
                <div class="a">
-                    <a href="messages.html">
+                    <a id="next">
                          <b>NEXT</b>
                     </a>
                </div>
           </form>
-     </div>    
+     </div>
+     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-analytics.js"></script>
+     <script>
+       var firebaseConfig = {
+         apiKey: "AIzaSyDUR1YtiVv5ODcd2P0ZhgNb98pQ1giBVJ0",
+         authDomain: "chit-chat-14af6.firebaseapp.com",
+         databaseURL: "https://chit-chat-14af6.firebaseio.com",
+         projectId: "chit-chat-14af6",
+         storageBucket: "chit-chat-14af6.appspot.com",
+         messagingSenderId: "232361079089",
+         appId: "1:232361079089:web:5be801bc6b78088aed0010",
+         measurementId: "G-WMSZ8J3C68"
+       };
+       firebase.initializeApp(firebaseConfig);
+       firebase.analytics();
+     </script>
+     <script>
+          var chatname, next;               
+          chatname = document.getElementById('chatname');
+          next = document.getElementById('next');
+          const database = firebase.database();
+          const rootref = database.ref('messages');
+          next.addEventListener('click', (e) => {
+               rootref.child(chatname.value).set({
+                    System: 'Welcome to chit chat'
+              });
+          });
+     </script>
 </body>
 </html>
