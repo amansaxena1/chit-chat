@@ -18,7 +18,7 @@
           <form>
                <input  id="chatname" type="text" placeholder="Choose Chat Name">
                <div class="a">
-                    <a id="next">
+                    <a id="next" href="messages.html">
                          <b>NEXT</b>
                     </a>
                </div>
@@ -45,12 +45,12 @@
           var chatname, next;               
           chatname = document.getElementById('chatname');
           next = document.getElementById('next');
-          const database = firebase.database();
-          const rootref = database.ref('messages');
           next.addEventListener('click', (e) => {
-               rootref.child(chatname.value).set({
-                    System: 'Welcome to chit chat'
-              });
+            firebase.database().ref("messages").child(chatname.value).push().set({
+              "chatname": chatname
+            });
+          window.localStorage.setItem('chatsname',chatname.value);
+          return false;
           });
      </script>
 </body>

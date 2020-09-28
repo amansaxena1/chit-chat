@@ -5,48 +5,77 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Chit-Chat</title>
      <link rel="stylesheet" href="css/messages.css">
-      <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
+     <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
      <nav>
           <img class="logo" src="icon.png" alt="">
      </nav>
      <div class="message_box">
-          <div class="name">
-              <b>Name</b>
+          <div class="name" id="chatname">
+              <p id="title"><b>Name</b></p>
           </div>
-          <div class="message_logs">
-               <ul>
-                    <li class="him"><b>Aman: </b>By Other Use jxbv jlsdbv lisdh vsdbfsd kbvuisd hvsbdi fhosdbfusd sdjbdsbf sdibosdb sdijwdbfo sdjvbiosd sdibfsd iewbfsd fiusedbfsd viusdbr</li>
-                    <li class="me"><b>Dummy: </b>By this User, First message zmsd vjsd v sdkl vsd vsdskd f sd vjdsd fsdfek fjkew g oeb fe </li>
-                    <li class="me">By this User, Second message</li>
-                    <li class="me">By this User, Third message</li>
-                    <li class="me">By this User, Third message</li>
-                    <li class="me">By this User, Third message</li>
-                    <li class="me">By this User, Third message</li>
-                    <li class="him">By Other User</li>
-                    <li class="him">By Other User</li>
-                    <li class="him">By Other User</li>
-                    <li class="me">By this User, Third message</li>
-                    <li class="me">By this User, Third message</li>
-                    <li class="me">By this User, Third message</li>
-                    <li class="him">By Other User</li>
-                    <li class="me">By this User, Third message</li>
-                    <li class="me">By this User, Third message</li>
-                    <li class="me">By this User, Third message</li>
-                    <li class="me">By this User, Fourth message</li>
-                    <li class="him">By this User, Fourth message</li>
-                    <li class="me">By this User, Fifth message</li>
-               </ul>
+          <div class="message_logs" id="msgs">
+          	<ul id="ul">
+
+          	</ul>
           </div>
-          <div class="chat-form">
-               <textarea placeholder="Your Message..."></textarea>
-               <div class="a">
-                    <a href="#">
-                         <b>Say Something</b>
-                    </a> 
-               </div>
-          </div> 
-     </div>
+        <form onsubmit="return fun();">
+          	<div class="chat-form">
+               	<textarea id="message" placeholder="Your message.." autocomplete="off"></textarea> 
+	            <div class="a">
+    	            <a href="#">
+            	        <b>Say Something</b>
+        	        </a>
+                  	<a type="submit" id="send">
+                       	<b>Send</b>
+                   	</a>
+                </div>
+         	</div> 
+        </form>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-analytics.js"></script>
+    <script>
+       	var firebaseConfig = {
+        	apiKey: "AIzaSyDUR1YtiVv5ODcd2P0ZhgNb98pQ1giBVJ0",
+        	authDomain: "chit-chat-14af6.firebaseapp.com",
+        	databaseURL: "https://chit-chat-14af6.firebaseio.com",
+        	projectId: "chit-chat-14af6",
+        	storageBucket: "chit-chat-14af6.appspot.com",
+       		messagingSenderId: "232361079089",
+        	appId: "1:232361079089:web:5be801bc6b78088aed0010",
+        	measurementId: "G-WMSZ8J3C68"
+        };
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+     	var myName = localStorage.getItem("username");
+     	var chatname = localStorage.getItem("chatsname");
+     	document.getElementById("title").innerHTML=chatname;
+		var send = document.getElementById("send");
+		send.addEventListener('click', (e) => {
+    		var message = document.getElementById("message").value;
+    		firebase.database().ref("messages").child(chatname).push().set({
+            	"sender": myName,
+            	"message": message
+        	});
+        	document.getElementById("message").value='';
+        	return false;
+        });
+
+        firebase.database().ref("messages").child(chatname).on("child_added", function (snapshot) {
+        	var html = "";
+            if(snapshot.val().sender == myName){
+            	html += "<li class='me'><b>" + snapshot.val().sender + "</b>" + snapshot.val().message + "</li>";
+            }
+            else{
+            	html += "<li class='him'><b>" + snapshot.val().sender + "</b>" + snapshot.val().message + "</li>";
+            }
+
+          	document.getElementById("ul").innerHTML += html;
+        });
+    </script>
 </body>
 </html>

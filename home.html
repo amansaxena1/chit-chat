@@ -6,32 +6,66 @@
      <title>Chit-Chat</title>
      <link rel="stylesheet" href="css/home.css">
      <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap" rel="stylesheet">
-     <script src="/__/firebase/7.21.1/firebase-app.js"></script>
-     <script src="/__/firebase/7.21.1/firebase-analytics.js"></script>
-     <script src="/__/firebase/init.js"></script>
-     <script type="text/javascript" src="home.js"></script>
 </head>
 <body>
      <nav>
           <img class="logo" src="icon.png" alt="">
      </nav>
      <div class="loginBox">
-         <h1>
+          <h1>
                <span>LOG IN</span>
           </h1>
-          <form>
-               <input type="text" id="username" placeholder="Username">
+          <form action="messages.html">
+               <input type="text" id="names" placeholder="Full Name">
+               <input type="Number" id="phnno" placeholder="Phone Number">
+               <br>
                <input type="password" id="password" placeholder="Password">
                <div class="a">
-                    <a href="chat.html" onclick="login()">
+                    <a id="login">
                          <b>LOG IN</b>
                     </a>
-                    <p>-OR-</p>
+                    <p id="errormsg">-OR-</p>
                     <a href="signup.html">
                          <b>CREATE ACCOUNT</b>
                     </a> 
                </div>
           </form>
-     </div>    
+     </div>
+     <!----------------------------------connection to firebase----------------------------------->
+     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-analytics.js"></script>
+     <script>
+       var firebaseConfig = {
+         apiKey: "AIzaSyDUR1YtiVv5ODcd2P0ZhgNb98pQ1giBVJ0",
+         authDomain: "chit-chat-14af6.firebaseapp.com",
+         databaseURL: "https://chit-chat-14af6.firebaseio.com",
+         projectId: "chit-chat-14af6",
+         storageBucket: "chit-chat-14af6.appspot.com",
+         messagingSenderId: "232361079089",
+         appId: "1:232361079089:web:5be801bc6b78088aed0010",
+         measurementId: "G-WMSZ8J3C68"
+       };
+       firebase.initializeApp(firebaseConfig);
+       firebase.analytics();
+     
+        var login = document.getElementById('login');
+        var names = document.getElementById('names');
+        var passwordgiven = document.getElementById('password');
+        var phnno = document.getElementById('phnno');
+        login.addEventListener('click', (e) => {
+          firebase.database().ref("accounts").child(phnno.value).on("value", function (snapshot) {
+            if((snapshot.val().password == passwordgiven.value) && (snapshot.val().name == names.value)){
+                window.localStorage.setItem('username',names.value+': ');
+                window.location.href='chat.html';
+            }
+            else{
+              document.getElementById("errormsg").innerHTML='!! ACCOUNT NOT FOUND !!'
+            }
+        });
+        return false;
+        });
+     </script>
+     <!-----------------------------------end of passing name of user------------------------------------>
 </body>
 </html>

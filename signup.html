@@ -18,8 +18,9 @@
                <span>SIGN UP</span>
           </h1>
           <form>
-               <input type="text" id="name" placeholder="Name">
-               <input type="text" id="username" placeholder="Username">
+               <input type="text" id="name" placeholder="Full Name">
+               <input type="Number" id="phnno" placeholder="Phone Number">
+               <br>
                <input type="password" id="choosepassword" placeholder="Choose Password">
                <div class="a">
                     <a id="sign" href="chat.html">
@@ -51,20 +52,24 @@
        firebase.analytics();
      </script>
      <script>
-          var name1, username1, password1, sign1;               
+          var name1, phnno1, password1, sign1;               
           name1 = document.getElementById('name');
-          username1 = document.getElementById('username');
+          phnno1 = document.getElementById('phnno');
           password1 = document.getElementById('choosepassword');
           sign1 = document.getElementById('sign');
           const database = firebase.database();
           const rootref = database.ref('accounts');
           sign1.addEventListener('click', (e) => {
-               rootref.child(username1.value).set({
+               window.localStorage.setItem('username',name1.value+': ');
+               rootref.child(phnno.value).set({
                   name: name1.value,
-                  username: username1.value,
+                  phnno: phnno1.value,
                   password: password1.value
               });
+              
+              return false;
           });
+
      </script>
 </body>
 </html>
