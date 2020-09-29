@@ -51,17 +51,18 @@
      <script>
           var enterchat = document.getElementById('enterchat');
           var chatnames = document.getElementById('chatname');
-
+          var a = 0;
           enterchat.addEventListener('click', (e) => {
             firebase.database().ref("messages").child(chatnames.value).on("value", function (snapshot) {
                 if(snapshot.val().chatname == chatnames.value){
                   window.localStorage.setItem('chatsname',chatname.value);
                   window.location.href='messages.html';
-                }
-                else{
-                  document.getElementById("errormsg").innerHTML='!!! CHAT NOT FOUND !!!'
+                a = 1;
                 }
               });
+            if(a == 0){
+                  document.getElementById("errormsg").innerHTML='!!! CHAT NOT FOUND !!!';
+            }
         return false;
         });
           
