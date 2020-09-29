@@ -25,7 +25,7 @@
                          <b>LOG IN</b>
                     </a>
                     <p id="errormsg">-OR-</p>
-                    <a href="signup.html">
+                    <a href="pages/signup.html">
                          <b>CREATE ACCOUNT</b>
                     </a> 
                </div>
@@ -53,16 +53,21 @@
         var names = document.getElementById('names');
         var passwordgiven = document.getElementById('password');
         var phnno = document.getElementById('phnno');
+        var a = 0;
         login.addEventListener('click', (e) => {
           firebase.database().ref("accounts").child(phnno.value).on("value", function (snapshot) {
             if((snapshot.val().password == passwordgiven.value) && (snapshot.val().name == names.value)){
+            	a = 1;
                 window.localStorage.setItem('username',names.value+': ');
-                window.location.href='chat.html';
+                window.location.href='pages/chat.html';
             }
             else{
-              document.getElementById("errormsg").innerHTML='!! ACCOUNT NOT FOUND !!'
+              document.getElementById("errormsg").innerHTML='!! ACCOUNT NOT FOUND !!';
             }
         });
+          if(a != 0){
+        	document.getElementById("errormsg").innerHTML='!! ACCOUNT NOT FOUND !!';
+          }
         return false;
         });
      </script>
