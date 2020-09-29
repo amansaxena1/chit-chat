@@ -45,11 +45,14 @@
           var chatname, next;               
           chatname = document.getElementById('chatname');
           next = document.getElementById('next');
+          const database = firebase.database();
+          const rootref = database.ref('messages');
           next.addEventListener('click', (e) => {
-            firebase.database().ref("messages").child(chatname.value).push().set({
-              "chatname": chatname
+            window.localStorage.setItem('chatsname',chatname.value);
+            rootref.child(chatname.value).set({
+              chatname: chatname.value
             });
-          window.localStorage.setItem('chatsname',chatname.value);
+
           return false;
           });
      </script>
