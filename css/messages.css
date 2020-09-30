@@ -194,3 +194,10 @@ ul li b{
         height: 50px
     }
 }
+#instructions{
+    color: white;
+    text-align: center;
+    margin-top: 2%;
+    font-weight: bold;
+    letter-spacing: 2px;
+}

@@ -23,10 +23,13 @@
         <form onsubmit="return fun();">
           	<div class="chat-form">
                	<textarea id="message" placeholder="Your message.." autocomplete="off"></textarea> 
+	            <a>
+	            	<p id="instructions">Press the speak button</p>
+	            </a>
 	            <div class="a">
-    	            <!-- <a href="#">
-            	        <b>Say Something</b>
-        	        </a> -->
+    	            <a id="start-btn">
+            	        <b>Speak</b>
+        	        </a>
                   	<a type="submit" id="send">
                        	<b>Send</b>
                    	</a>
@@ -37,6 +40,52 @@
     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-analytics.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+    <script>
+		var SpeechRecognition = window.webkitSpeechRecognition;
+
+		var recognition = new SpeechRecognition();
+
+		var textbox = $("#message");
+
+		var instructions = $("#instructions");
+
+		var content = '';
+
+		recognition.continuous = true;
+
+		recognition.onstart = function(){
+			instructions.text("voice recognition is on");
+		}
+
+		recognition.onspeechend = function(){
+			instructions.text("No Activity");
+		}
+
+		recognition.onerror = function(){
+			instructions.text("try Again");
+		}
+
+		recognition.onresult = function(event){
+			var current = event.resultIndex;
+
+			var transcript = event.results[current][0].transcript;
+
+			content += transcript
+
+			textbox.val(content);
+		}
+
+		$("#start-btn").click(function (event){
+			if(content.length){
+				content += '';
+			}
+			recognition.start();
+		})
+	</script>
+
     <script>
        	var firebaseConfig = {
         	apiKey: "AIzaSyDUR1YtiVv5ODcd2P0ZhgNb98pQ1giBVJ0",
@@ -50,6 +99,9 @@
         };
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
+
+
+
 
      	var myName = localStorage.getItem("username");
      	var chatname = localStorage.getItem("chatsname");
