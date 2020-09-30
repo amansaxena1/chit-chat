@@ -84,9 +84,7 @@
 			}
 			recognition.start();
 		})
-	</script>
 
-    <script>
        	var firebaseConfig = {
         	apiKey: "AIzaSyDUR1YtiVv5ODcd2P0ZhgNb98pQ1giBVJ0",
         	authDomain: "chit-chat-14af6.firebaseapp.com",
@@ -114,6 +112,7 @@
             	"message": message
         	});
         	document.getElementById("message").value='';
+        	content = '';
         	return false;
         });
 
